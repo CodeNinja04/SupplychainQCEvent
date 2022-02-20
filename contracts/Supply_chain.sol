@@ -2,11 +2,12 @@
 pragma solidity >= 0.8.0;
 
 contract Supplychain{
-string product_id;
-string worker_id;
+
+uint256 product_id=0;
+uint256 worker_id=0;
 
 struct Product{
-    string id;
+    uint256 id;
     string name;
     string price;
     string description;
@@ -17,44 +18,77 @@ struct Status{
     string location;
     uint256 timestamp;
     string data;
-    string worker_id;
-    bool flasg;
+    uint256 w_id;
+    uint256 p_id;
+    bool flag;
 
 }
 
 struct Worker{
     string name;
-    string id;
+    uint256 id;
     uint256 timestamp;
 }
 
 Product[] public products_list;
-Product public productInfo;
+Product private productInfo;
 Status[] public productStatus;
-Status public statusInfo;
+Status private statusInfo;
 Worker[] public workers_list;
-Worker public workerInfo;
-mapping(string => Product) public product_Status;
-mapping (string => Product) public products;
-mapping (string => Worker) public workers;
+Worker private workerInfo;
+
+mapping(uint256 => Status[]) public product_Status;
+mapping (uint256 => Product) public products;
+mapping (uint256 => Worker) public workers;
 
 
-function setWorker(string memory name,string memory id) public  payable{
-    workerInfo=Worker(name,id,block.timestamp);
-    workers[id]=workerInfo;
+function setWorker(string memory name) public  payable{
+    workerInfo=Worker(name,worker_id,block.timestamp);
+    workers[worker_id]=workerInfo;
     workers_list.push(workerInfo);
+    worker_id++;
 
 }
 
-function AddProduct(string memory  id,
+function AddProduct(
     string memory name,
     string memory price,
     string memory description,
     string memory data) public payable
 {
-    productInfo=Product(id,name,price,description,data,block.timestamp);
-    products[id]=(productInfo);
+    productInfo=Product(product_id,name,price,description,data,block.timestamp);
+    products[product_id]=(productInfo);
     products_list.push(productInfo);
-    }
+
+}
+
+function AddStatus( string memory location,
+    
+    string  memory data,
+    uint256 wid,
+    uint256 pid,
+    bool flag
+) public payable {
+
+    statusInfo= Status(location,block.timestamp,data,wid,pid,flag);
+    product_Status[pid].push(statusInfo);
+    productStatus.push(statusInfo);
+}
+
+function getProductsList() public view returns(Product[] memory)
+{
+    return products_list;
+}
+
+function getWorkerssList() public view returns(Worker[] memory)
+{
+    return workers_list;
+}
+
+function getProductStatus(uint256 id) public view returns(Status[] memory){
+
+    return product_Status[id];
+}
+
 
 }
