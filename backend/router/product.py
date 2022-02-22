@@ -11,10 +11,10 @@ class Product(BaseModel):
     
 class Status(BaseModel):
     location :str
-    data :int
+    data :str
     wid :int
     pid :int
-    flag :int
+    flag :bool
 
 router = APIRouter(
     prefix='/product',
@@ -26,6 +26,11 @@ router = APIRouter(
 @router.get('/')
 def index():
     return getProductsList()
+
+@router.get("/{id}")
+def index(id:int):
+    return getProductStatus(id)
+    
 
 @router.post('/')
 def index(product: Product):

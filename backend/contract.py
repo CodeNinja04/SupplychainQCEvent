@@ -452,8 +452,8 @@ abi = json.loads("""[
 	}
 ]""")
 
-key = 'SECRET KEY'
-account = w3.toChecksumAddress('ACCOUNT ADDRESS')
+key = 'c91e7c75c03c0d2814e00b23200a521197c036bb87537cb9bcd1356e410cb4b8'
+account = w3.toChecksumAddress('0x20509aC8AcE7546fF5Aa8160Bc789D554FFc92CF')
 
 address = w3.toChecksumAddress('0x294befe9cd6a95f5762526d7420d77022b999db4')
 deployed_contract = w3.eth.contract(address=address, abi=abi)
@@ -490,7 +490,8 @@ def AddStatus(location, data, wid, pid, flag):
 
 
 def  getProductsList():
-      return deployed_contract.functions.getProductsList().call()
+    
+    return deployed_contract.functions.getProductsList().call()
 
 def getWorkersList():
    return deployed_contract.functions.getWorkerssList().call()
