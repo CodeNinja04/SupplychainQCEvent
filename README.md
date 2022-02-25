@@ -5,4 +5,4 @@
 
 <p> ROPSTEN FAUCET : https://faucet.dimensions.network/ </p> 
 
-<p> Metamask </p>
+<p> Metamask : https://metamask.io/download/</p>
