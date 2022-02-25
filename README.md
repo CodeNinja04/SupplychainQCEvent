@@ -17,6 +17,6 @@
   <li> Type node-red in terminal to open node red </li>
   <li> Copy json from nodered--> index.js  </li>
   <li> Paste this json in import section in node red </li>
-  <li> Now you can run trigger api to interact with blockchain </li>
+  <li> Now you can  trigger api to interact with blockchain </li>
   
  </ul>
