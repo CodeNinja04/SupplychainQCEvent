@@ -1,70 +1,218 @@
 [
-  {
-    "id": "00862d0857036eb4",
-    "type": "tab",
-    "label": "Flow 6",
-    "disabled": false,
-    "info": "",
-    "env": []
-  },
-  {
-    "id": "aa51a4743f678389",
-    "type": "http request",
-    "z": "00862d0857036eb4",
-    "name": "",
-    "method": "GET",
-    "ret": "txt",
-    "paytoqs": "ignore",
-    "url": "http://127.0.0.1:5000/",
-    "tls": "",
-    "persist": false,
-    "proxy": "",
-    "authType": "",
-    "senderr": false,
-    "x": 370,
-    "y": 180,
-    "wires": [["f10723b2b1761c12"]]
-  },
-  {
-    "id": "2092094620457548",
-    "type": "inject",
-    "z": "00862d0857036eb4",
-    "name": "",
-    "props": [
-      {
-        "p": "payload"
-      },
-      {
-        "p": "topic",
-        "vt": "str"
-      }
-    ],
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "",
-    "payloadType": "date",
-    "x": 120,
-    "y": 180,
-    "wires": [["aa51a4743f678389"]]
-  },
-  {
-    "id": "f10723b2b1761c12",
-    "type": "debug",
-    "z": "00862d0857036eb4",
-    "name": "",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "payload",
-    "targetType": "msg",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 750,
-    "y": 180,
-    "wires": []
-  }
+    {
+        "id": "00862d0857036eb4",
+        "type": "tab",
+        "label": "Flow 6",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "aa51a4743f678389",
+        "type": "http request",
+        "z": "00862d0857036eb4",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "body",
+        "url": "http://localhost:8000/product/status",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 470,
+        "y": 120,
+        "wires": [
+            [
+                "734fd2b530fb47ca",
+                "f10723b2b1761c12"
+            ]
+        ]
+    },
+    {
+        "id": "2092094620457548",
+        "type": "inject",
+        "z": "00862d0857036eb4",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 120,
+        "wires": [
+            [
+                "7984216f76d9553e"
+            ]
+        ]
+    },
+    {
+        "id": "f10723b2b1761c12",
+        "type": "debug",
+        "z": "00862d0857036eb4",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 770,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "734fd2b530fb47ca",
+        "type": "function",
+        "z": "00862d0857036eb4",
+        "name": "",
+        "func": "\nlet x=msg;\n\n\nreturn (x);",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 620,
+        "y": 300,
+        "wires": [
+            [
+                "5905f36441f5adb2"
+            ]
+        ]
+    },
+    {
+        "id": "5905f36441f5adb2",
+        "type": "debug",
+        "z": "00862d0857036eb4",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 850,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "d88dd470.0ac7b8",
+        "type": "inject",
+        "z": "00862d0857036eb4",
+        "name": "make request",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "v": "0",
+                "vt": "num"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 420,
+        "wires": [
+            [
+                "874a3d4e.9b666"
+            ]
+        ]
+    },
+    {
+        "id": "874a3d4e.9b666",
+        "type": "http request",
+        "z": "00862d0857036eb4",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://localhost:8000/product/1",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 330,
+        "y": 440,
+        "wires": [
+            [
+                "a45b2dbb0ce1de48"
+            ]
+        ]
+    },
+    {
+        "id": "a45b2dbb0ce1de48",
+        "type": "json",
+        "z": "00862d0857036eb4",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 610,
+        "y": 480,
+        "wires": [
+            [
+                "add38be52f2fa160"
+            ]
+        ]
+    },
+    {
+        "id": "add38be52f2fa160",
+        "type": "debug",
+        "z": "00862d0857036eb4",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 870,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "7984216f76d9553e",
+        "type": "function",
+        "z": "00862d0857036eb4",
+        "name": "",
+        "func": "\nmsg.payload={\n    \n   \"location\":\"some location\",\n   \"data\":\"20\",\n   \"wid\":1,\n   \"pid\":1,\n   \"flag\":false\n    \n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 120,
+        "wires": [
+            [
+                "aa51a4743f678389"
+            ]
+        ]
+    }
 ]
